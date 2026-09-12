@@ -5,11 +5,13 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import ChooseRole from "./pages/ChooseRole";
 import CreatorProfile from "./pages/CreatorProfile";
-import RecruiterProfile from "./pages/RecruiterProfile"; // नया Recruiter पेज इम्पोर्ट किया
-import ViewerProfile from "./pages/ViewerProfile";       // नया Viewer पेज इम्पोर्ट किया
+import RecruiterProfile from "./pages/RecruiterProfile"; 
+import ViewerProfile from "./pages/ViewerProfile";       
 import Reels from "./pages/Reels";
 import ReelFeed from './pages/ReelFeed';
-import DashboardWrapper from "./pages/DashboardWrapper";
+import DashboardWrapper from "./pages/DashBoardWrapper";
+import Collaborations from './pages/Collaborations';
+
 
 function App() {
   return (
@@ -20,15 +22,19 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/choose-role" element={<ChooseRole />} />
         
-       <Route path="/dashboard" element={<DashboardWrapper />} />
+        <Route path="/dashboard" element={<DashboardWrapper />} />
         
-        {/* Teeno roles ke profiles */}
+        {/* profiles of three roles */}
         <Route path="/creator-profile" element={<CreatorProfile />} />
         <Route path="/recruiter-profile" element={<RecruiterProfile />} />
         <Route path="/viewer-profile" element={<ViewerProfile />} />
         
+        {/* FIX: Handles the dynamic profile link */}
+        <Route path="/profile/:userId" element={<CreatorProfile />} />
+        
         <Route path="/reels" element={<Reels />} />
         <Route path="/reels/feed" element={<ReelFeed />} />
+        <Route path="/collaborations" element={<Collaborations />} />
       </Routes>
     </BrowserRouter>
   );

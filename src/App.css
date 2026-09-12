@@ -182,3 +182,30 @@
     border-right-color: var(--border);
   }
 }
+/* Style for the container housing your navbar elements */
+.nav-buttons-container {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+/* Make both buttons use the clean, identical styling layout */
+.nav-btn-hiring, .nav-btn-home {
+  background: transparent;
+  color: #00e5ff; /* Match your existing electric cyan/blue text color */
+  border: 1px solid #00e5ff; /* Match the exact outline border */
+  padding: 8px 22px;
+  border-radius: 24px; /* Gives it that nice pill capsule shape */
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+  display: inline-block;
+  cursor: pointer;
+}
+
+/* Clean hover feedback */
+.nav-btn-hiring:hover {
+  background: rgba(0, 229, 255, 0.1); /* Subtle glowing layout background */
+  color: #ffffff;
+}

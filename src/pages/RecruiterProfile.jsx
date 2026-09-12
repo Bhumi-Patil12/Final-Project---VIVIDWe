@@ -1,6 +1,6 @@
 import { useUser, useSession } from "../auth";
 import { useState, useEffect, useMemo } from "react";
-import { Link } from "react-router-dom"; // होम बटन के लिए
+import { Link } from "react-router-dom"; 
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 

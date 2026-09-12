@@ -3,11 +3,11 @@ import { Link, useNavigate } from "react-router-dom";
 export default function ChooseRole() {
   const navigate = useNavigate();
 
-  // जब यूजर बटन पर क्लिक करेगा तो रोल लोकलस्टोरेज में सेट होगा
+
   const handleRoleSelect = (role) => {
     localStorage.setItem("selectedRole", role);
     
-    // अगर यूजर सीधे साइनअप पर जा रहा है, तो राउटर उसे यूआरएल पैरम के साथ भेजेगा
+   
     navigate(`/signup?role=${role}`);
   };
 

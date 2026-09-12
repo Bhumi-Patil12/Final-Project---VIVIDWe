@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useUser } from "../auth"; // Aapka explicit authentication hook
+import { useUser } from "../auth"; 
 
 export default function DashboardWrapper() {
   const { user } = useUser();
@@ -14,26 +14,24 @@ export default function DashboardWrapper() {
       try {
         const username = user.username || user.primaryEmailAddress?.localPart || "";
         
-        // 1. Backend API se profile check karenge (Purana User Check)
         const response = await fetch(`http://localhost:5000/api/profile/${username}`);
         const result = await response.json();
 
         if (result.success && result.data && result.data.actualRole) {
-          // Case A: User purana hai aur DB mein role mil gaya
+         
           redirectByRole(result.data.actualRole);
         } else {
-          // Case B: Naya user hai, DB mein entry nahi h, localStorage check karo
+        
           const localRole = localStorage.getItem("selectedRole");
           if (localRole) {
             redirectByRole(localRole);
           } else {
-            // Agar kuch nahi mila toh fallback to ChooseRole page
+           
             navigate("/choose-role", { replace: true });
           }
         }
       } catch (error) {
         console.error("Error routing user:", error);
-        // Network fail hone par local storage fallback
         const localRole = localStorage.getItem("selectedRole");
         if (localRole) redirectByRole(localRole);
       } finally {

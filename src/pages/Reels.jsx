@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
-import { useAuth } from "@clerk/clerk-react"; // Token fetch karne ke liye standard hook
+import { useAuth } from "@clerk/clerk-react"; 
 import { useNavigate } from 'react-router-dom';
 
 export default function Reels() {
@@ -9,17 +9,16 @@ export default function Reels() {
   const [creator, setCreator] = useState("");
   const [description, setDescription] = useState("");
   
-  // Ref hook to trigger hidden gallery picker
+  
   const fileInputRef = useRef(null);
   const { getToken } = useAuth();
 
-  // 🔍 1. DATABASE SE REELS FETCH KARNA (On Component Mount)
   const fetchReelsFromDb = async () => {
     try {
       const response = await fetch("http://localhost:5000/api/reels-feed");
       const result = await response.json();
       if (result.success) {
-        setReels(result.data); // MySQL ka sara real-time data state mein save ho jayega
+        setReels(result.data); 
       }
     } catch (error) {
       console.error("Error fetching reels from MySQL:", error);
@@ -30,7 +29,7 @@ export default function Reels() {
     fetchReelsFromDb();
   }, []);
 
-  // 📁 2. GALLERY SE DIRECT VIDEO UPLOAD LOGIC (For Header Cyan Button)
+
   const handleHeaderFileUpload = async (event) => {
     const file = event.target.files[0];
     if (!file) return;
@@ -82,11 +81,53 @@ export default function Reels() {
             </Link>
             <p className="mt-2 text-sm text-slate-400">Browse creator reels or add your own demo reel instantly.</p>
           </div>
-          <div className="flex flex-wrap gap-3">
-            <Link to="/" className="rounded-full border border-cyan-500 px-5 py-2 text-sm font-semibold text-cyan-200 hover:bg-cyan-600/20 transition">
-              Home
-            </Link>
-          </div>
+          {/* Replace your text links with this beautifully styled container block */}
+<div style={{ 
+  display: 'flex', 
+  gap: '12px', 
+  alignItems: 'center', 
+  fontFamily: 'sans-serif' 
+}}>
+  
+  {/* 1. Styled Hiring Button */}
+  <a href="/collaborations" style={{
+    background: 'transparent',
+    color: '#ffffff',
+    border: '1px solid #ffffff',
+    padding: '8px 18px',
+    borderRadius: '20px',
+    textDecoration: 'none',
+    fontSize: '14px',
+    fontWeight: '500',
+    cursor: 'pointer',
+    transition: 'all 0.2s ease'
+  }}
+  onMouseOver={(e) => { e.target.style.background = '#ffffff'; e.target.style.color = '#000c1f'; }}
+  onMouseOut={(e) => { e.target.style.background = 'transparent'; e.target.style.color = '#ffffff'; }}
+  >
+    Hiring
+  </a>
+
+  {/* 2. Styled Home Button */}
+  <a href="/" style={{
+    background: 'transparent',
+    color: '#ffffff',
+    border: '1px solid #ffffff',
+    padding: '8px 18px',
+    borderRadius: '20px',
+    textDecoration: 'none',
+    fontSize: '14px',
+    fontWeight: '500',
+    cursor: 'pointer',
+    transition: 'all 0.2s ease'
+  }}
+  onMouseOver={(e) => { e.target.style.background = '#ffffff'; e.target.style.color = '#000c1f'; }}
+  onMouseOut={(e) => { e.target.style.background = 'transparent'; e.target.style.color = '#ffffff'; }}
+  >
+    Home
+  </a>
+  
+</div>
         </nav>
 
         <header className="mt-10 rounded-[32px] border border-cyan-500/20 bg-slate-900/80 p-10 shadow-2xl shadow-cyan-500/10 backdrop-blur-xl">

@@ -1,7 +1,7 @@
 ﻿import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { SignUp, useAuth } from "../auth";
-// इसे खोजो और ऐसे बदल दो 👇
+
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const websitePattern = /^(https?:\/\/)?([\w.-]+)\.([a-z]{2,})(\/\S*)?$/i;
@@ -15,7 +15,7 @@ export default function Signup() {
   const isRecruiter = role === "recruiter";
   const roleLabel = isRecruiter ? "Recruiter" : role === "viewer" ? "Viewer" : "Creator";
 
-  // डायनामिक प्रोफाइल पाथ तय करने के लिए
+ 
   const targetProfilePath = isRecruiter 
     ? "/recruiter-profile" 
     : role === "viewer" 
@@ -76,7 +76,7 @@ export default function Signup() {
 
     auth.login({ email, password });
 
-    // अब जो रोल ऊपर से आएगा, यूजर सिर्फ उसी पेज पर जाएगा!
+
     if (role === "recruiter") {
       navigate("/recruiter-profile");
     } else if (role === "viewer") {
@@ -88,7 +88,7 @@ export default function Signup() {
 
 
   if (!auth) {
-    // फिक्स: Clerk के रीडायरेक्शन यूआरएल को भी डायनामिक सही प्रोफाइल पाथ दिया 👇
+   
     return <SignUp forceRedirectUrl={targetProfilePath} />;
 
   }
